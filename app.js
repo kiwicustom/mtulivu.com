@@ -6,7 +6,6 @@
   const flock = document.getElementById("butterflies");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const HEAD = { x: 0.5, y: 0.235 };
-  const MAX = 5;
   const SEASONS = ["summer", "fall", "winter", "spring"];
   const SEASON_MS = 15000;
   const SLOTS = [
@@ -27,6 +26,7 @@
   let started = false;
   let slot = 0;
   let season = 0;
+  let quoteTimer = 0;
   let flakes = [];
   let wx = weather.getContext("2d");
 
@@ -95,16 +95,6 @@
     el.style.setProperty("--reach", `${reach}px`);
   }
 
-  function swapText(el) {
-    const p = el.querySelector("p");
-    if (!p) return;
-    p.classList.add("swap");
-    window.setTimeout(() => {
-      p.textContent = nextQuote();
-      p.classList.remove("swap");
-    }, 280);
-  }
-
   function spawn() {
     if (!quotes.length) return;
     const thought = Math.random() < 0.45;
@@ -119,18 +109,15 @@
     } else {
       el.insertAdjacentHTML("beforeend", '<i class="tail"></i>');
     }
+    sky.replaceChildren();
     sky.appendChild(el);
     placeBubble(el);
-    while (sky.children.length > MAX) sky.firstElementChild?.remove();
   }
 
-  function cycleQuotes() {
-    if (sky.children.length < MAX) spawn();
-    else {
-      const pick = sky.children[Math.floor(Math.random() * sky.children.length)];
-      swapText(pick);
-    }
-    window.setTimeout(cycleQuotes, quoteDelay());
+  function showQuote() {
+    spawn();
+    window.clearTimeout(quoteTimer);
+    quoteTimer = window.setTimeout(showQuote, quoteDelay());
   }
 
   function butterflyMarkup(i) {
@@ -221,11 +208,7 @@
   function start() {
     if (started) return;
     started = true;
-    spawn();
-    spawn();
-    spawn();
-    spawn();
-    window.setTimeout(cycleQuotes, quoteDelay());
+    showQuote();
     makeButterflies();
     resizeWeather();
     paintWeather();
@@ -234,8 +217,7 @@
 
   document.addEventListener("click", (event) => {
     if (event.target.closest("a")) return;
-    if (sky.children.length) swapText(sky.children[Math.floor(Math.random() * sky.children.length)]);
-    else spawn();
+    showQuote();
   });
 
   window.addEventListener("resize", () => {

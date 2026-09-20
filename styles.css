@@ -379,7 +379,21 @@ html[data-season="spring"] .cloud {
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
+  transform-origin: 50% 58%;
+  animation: levitate 5.6s ease-in-out infinite;
   filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.48));
+}
+
+@keyframes levitate {
+  0%,
+  100% {
+    transform: translateY(8px) rotate(-0.35deg);
+    filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.4));
+  }
+  50% {
+    transform: translateY(-18px) rotate(0.45deg);
+    filter: drop-shadow(0 38px 44px rgba(0, 0, 0, 0.22));
+  }
 }
 
 .sky {
@@ -485,7 +499,8 @@ html[data-season="spring"] .cloud {
 @media (prefers-reduced-motion: reduce) {
   .bubble,
   .butterfly,
-  .butterfly .wing {
+  .butterfly .wing,
+  .guru img {
     animation: none;
   }
   .sky-top,
