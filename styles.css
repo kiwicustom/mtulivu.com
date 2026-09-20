@@ -331,11 +331,29 @@ html[data-season="spring"] .cloud {
 }
 
 .tag {
-  margin: 0.35rem 0 0;
-  font-size: 0.92rem;
-  letter-spacing: 0.18em;
-  text-transform: lowercase;
-  color: rgba(255, 244, 222, 0.88);
+  margin: 0.4rem 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.12rem;
+}
+
+.origin {
+  font-family: Syne, system-ui, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 244, 222, 0.62);
+  text-shadow: 0 1px 8px rgba(20, 12, 6, 0.55);
+}
+
+.meaning {
+  font-size: 1.08rem;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 244, 222, 0.94);
   text-shadow: 0 1px 8px rgba(20, 12, 6, 0.55);
 }
 
@@ -533,8 +551,8 @@ html[data-season="spring"] .cloud {
   .word {
     letter-spacing: 0.22em;
   }
-  .tag {
-    display: none;
+  .meaning {
+    font-size: 0.98rem;
   }
   .bubble {
     max-width: min(15.5rem, 84vw);
