@@ -1,0 +1,528 @@
+:root {
+  --ink: #140c06;
+  --cream: #fff4de;
+  --cream-2: #ffe7b8;
+  --saffron: #e36a1a;
+  --gold: #f0c14b;
+  --blue: #1d4fad;
+  --sky-top: #3ea9ff;
+  --sky-mid: #9ad4ff;
+  --sky-bot: #e7f6c9;
+  --sun: #ffe566;
+  --sun-glow: rgba(255, 229, 102, 0.35);
+  --moon: transparent;
+  --mtn-far: #8eb6d4;
+  --mtn-mid: #5e8aaa;
+  --snow: transparent;
+  --lake-top: #5ec4e6;
+  --lake-bot: #2f7fb3;
+  --lake-shine: rgba(255, 255, 255, 0.35);
+  --meadow-top: #7ec34a;
+  --meadow-bot: #3d8a32;
+  --canopy: #2f8a38;
+  --canopy-dim: #1f6a28;
+  --trunk: #5a3518;
+  --blossom: transparent;
+  --blossom-heart: transparent;
+  --season-ms: 4s;
+}
+
+html[data-season="fall"] {
+  --sky-top: #c45a22;
+  --sky-mid: #f0a25a;
+  --sky-bot: #f6d39a;
+  --sun: #ffb347;
+  --sun-glow: rgba(255, 140, 50, 0.32);
+  --moon: transparent;
+  --mtn-far: #c4896a;
+  --mtn-mid: #8a5340;
+  --snow: transparent;
+  --lake-top: #d9894a;
+  --lake-bot: #5a6e7a;
+  --lake-shine: rgba(255, 220, 170, 0.28);
+  --meadow-top: #c47a2a;
+  --meadow-bot: #6e3e14;
+  --canopy: #d35400;
+  --canopy-dim: #a63d12;
+  --trunk: #4a2a12;
+  --blossom: transparent;
+}
+
+html[data-season="winter"] {
+  --sky-top: #8aa4bc;
+  --sky-mid: #c5d4e2;
+  --sky-bot: #eef4f8;
+  --sun: #f4f0d8;
+  --sun-glow: rgba(255, 255, 255, 0.22);
+  --moon: #f7fbff;
+  --mtn-far: #9bb0c4;
+  --mtn-mid: #6d8298;
+  --snow: #f8fcff;
+  --lake-top: #cfe4f2;
+  --lake-bot: #7fa0b8;
+  --lake-shine: rgba(255, 255, 255, 0.55);
+  --meadow-top: #e8eef4;
+  --meadow-bot: #c5d0db;
+  --canopy: #d8e4ee;
+  --canopy-dim: #b7c6d4;
+  --trunk: #3d2a22;
+  --blossom: transparent;
+}
+
+html[data-season="spring"] {
+  --sky-top: #6ec4f0;
+  --sky-mid: #c6ebff;
+  --sky-bot: #f7e3ef;
+  --sun: #fff1a8;
+  --sun-glow: rgba(255, 241, 168, 0.4);
+  --moon: transparent;
+  --mtn-far: #9ec4b0;
+  --mtn-mid: #6a9a88;
+  --snow: rgba(255, 255, 255, 0.18);
+  --lake-top: #7ad0e8;
+  --lake-bot: #3b8fb5;
+  --lake-shine: rgba(255, 255, 255, 0.42);
+  --meadow-top: #b6e07a;
+  --meadow-bot: #5aaa48;
+  --canopy: #67b85a;
+  --canopy-dim: #e89ab8;
+  --trunk: #6a3e22;
+  --blossom: #f4a0c0;
+  --blossom-heart: #ffe38a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--sky-mid);
+  color: var(--cream);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  overflow: hidden;
+  transition: background-color var(--season-ms) ease;
+}
+
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.land {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sky-top {
+  stop-color: var(--sky-top);
+  transition: stop-color var(--season-ms) ease;
+}
+.sky-mid {
+  stop-color: var(--sky-mid);
+  transition: stop-color var(--season-ms) ease;
+}
+.sky-bot {
+  stop-color: var(--sky-bot);
+  transition: stop-color var(--season-ms) ease;
+}
+.lake-top {
+  stop-color: var(--lake-top);
+  transition: stop-color var(--season-ms) ease;
+}
+.lake-bot {
+  stop-color: var(--lake-bot);
+  transition: stop-color var(--season-ms) ease;
+}
+.meadow-top {
+  stop-color: var(--meadow-top);
+  transition: stop-color var(--season-ms) ease;
+}
+.meadow-bot {
+  stop-color: var(--meadow-bot);
+  transition: stop-color var(--season-ms) ease;
+}
+
+.sun,
+.sun-glow,
+.moon,
+.mtn,
+.snow,
+.lake-shine,
+.canopy,
+.trunk,
+.petal,
+.heart {
+  transition:
+    fill var(--season-ms) ease,
+    opacity var(--season-ms) ease;
+}
+
+.cloud {
+  fill: rgba(255, 255, 255, 0.55);
+  transition: fill var(--season-ms) ease;
+}
+html[data-season="fall"] .cloud {
+  fill: rgba(255, 214, 170, 0.45);
+}
+html[data-season="winter"] .cloud {
+  fill: rgba(255, 255, 255, 0.8);
+}
+html[data-season="spring"] .cloud {
+  fill: rgba(255, 240, 248, 0.65);
+}
+.sun {
+  fill: var(--sun);
+}
+.sun-glow {
+  fill: var(--sun-glow);
+}
+.moon {
+  fill: var(--moon);
+}
+.mtn.far {
+  fill: var(--mtn-far);
+}
+.mtn.mid {
+  fill: var(--mtn-mid);
+}
+.snow {
+  fill: var(--snow);
+}
+.lake-shine {
+  fill: var(--lake-shine);
+}
+.canopy {
+  fill: var(--canopy);
+}
+.canopy.dim {
+  fill: var(--canopy-dim);
+}
+.trunk {
+  fill: var(--trunk);
+}
+.petal {
+  fill: var(--blossom);
+}
+.heart {
+  fill: var(--blossom-heart);
+}
+
+.weather {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.butterflies {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.butterfly {
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  left: 0;
+  top: 0;
+  offset-path: path("M -40,420 C 180,80 420,640 760,220 C 1080,-40 1320,580 1680,180");
+  offset-rotate: auto;
+  animation:
+    along var(--fly) linear infinite,
+    bob 1.8s ease-in-out infinite;
+  animation-delay: var(--delay), var(--delay);
+}
+
+.butterfly svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.butterfly .wing {
+  transform-origin: 20px 22px;
+  animation: flap 0.16s ease-in-out infinite alternate;
+}
+
+.butterfly .wing.right {
+  animation-delay: 0.08s;
+}
+
+.butterfly:nth-child(odd) {
+  offset-path: path("M 1680,260 C 1320,620 980,40 640,480 C 320,780 120,60 -80,340");
+}
+.butterfly:nth-child(3n) {
+  offset-path: path("M -60,180 C 300,500 700,40 980,520 C 1220,820 1500,200 1700,460");
+  width: 32px;
+  height: 32px;
+}
+.butterfly:nth-child(4n) {
+  offset-path: path("M 200,820 C 480,200 820,700 1100,120 C 1360,20 1580,540 1720,300");
+  width: 52px;
+  height: 52px;
+}
+
+@keyframes along {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes bob {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes flap {
+  from {
+    transform: scaleX(1) rotate(-12deg);
+  }
+  to {
+    transform: scaleX(0.18) rotate(10deg);
+  }
+}
+
+.brand,
+.mail {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  text-align: center;
+  pointer-events: none;
+}
+
+.brand {
+  top: 1.15rem;
+  left: 1.35rem;
+  right: auto;
+  text-align: left;
+}
+
+.word {
+  margin: 0;
+  font-family: Syne, system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  font-size: clamp(0.95rem, 2.4vw, 1.35rem);
+  color: var(--gold);
+  text-shadow:
+    0 1px 0 rgba(20, 12, 6, 0.45),
+    0 0 24px rgba(240, 193, 75, 0.35);
+}
+
+.tag {
+  margin: 0.35rem 0 0;
+  font-size: 0.92rem;
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
+  color: rgba(255, 244, 222, 0.88);
+  text-shadow: 0 1px 8px rgba(20, 12, 6, 0.55);
+}
+
+.mail {
+  bottom: 1.05rem;
+  pointer-events: auto;
+}
+
+.mail a {
+  color: var(--cream);
+  text-decoration: none;
+  font-family: Syne, system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  opacity: 0.9;
+  text-shadow: 0 1px 8px rgba(20, 12, 6, 0.7);
+}
+
+.mail a:hover {
+  color: var(--gold);
+  opacity: 1;
+}
+
+.guru {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.guru img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(86vw, 920px);
+  max-height: 70vh;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 22px 34px rgba(0, 0, 0, 0.48));
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  z-index: 4;
+  max-width: min(18.5rem, 78vw);
+  padding: 0.9rem 1.15rem 1rem;
+  color: var(--ink);
+  background: var(--cream);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.5),
+    0 0 0 3px #140c06;
+  pointer-events: auto;
+  cursor: pointer;
+  animation: pop-in 0.45s ease-out both;
+  transform: translate(-50%, -50%);
+}
+
+.bubble p {
+  margin: 0;
+  font-size: clamp(0.98rem, 2.2vw, 1.18rem);
+  line-height: 1.28;
+  font-weight: 600;
+  font-style: italic;
+  transition: opacity 0.28s ease;
+}
+
+.bubble p.swap {
+  opacity: 0;
+}
+
+.bubble.speech {
+  border-radius: 1.35rem 1.35rem 1.35rem 1.15rem;
+  background: linear-gradient(180deg, #fff8ea, var(--cream));
+}
+
+.bubble.thought {
+  border-radius: 2.4rem 2.1rem 2.5rem 2.2rem / 2.1rem 2.5rem 1.9rem 2.4rem;
+  background: linear-gradient(180deg, #fffdf6, var(--cream-2));
+}
+
+.tail,
+.puff {
+  position: absolute;
+  pointer-events: none;
+  background: var(--cream);
+  box-shadow: 0 0 0 3px rgba(20, 12, 6, 0.88);
+}
+
+.tail {
+  width: 18px;
+  height: 18px;
+  left: 50%;
+  top: 50%;
+  clip-path: polygon(0 18%, 100% 50%, 0 82%);
+  transform: translate(-50%, -50%) rotate(var(--tail)) translateX(calc(var(--reach) + 9px));
+}
+
+.puff {
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+}
+
+.puff.a {
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%) rotate(var(--tail)) translateX(calc(var(--reach) + 16px));
+}
+
+.puff.b {
+  width: 9px;
+  height: 9px;
+  transform: translate(-50%, -50%) rotate(var(--tail)) translateX(calc(var(--reach) + 30px));
+}
+
+.puff.c {
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%) rotate(var(--tail)) translateX(calc(var(--reach) + 42px));
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble,
+  .butterfly,
+  .butterfly .wing {
+    animation: none;
+  }
+  .sky-top,
+  .sky-mid,
+  .sky-bot,
+  .lake-top,
+  .lake-bot,
+  .meadow-top,
+  .meadow-bot,
+  .sun,
+  .sun-glow,
+  .moon,
+  .mtn,
+  .snow,
+  .lake-shine,
+  .canopy,
+  .trunk,
+  .petal,
+  .heart,
+  html,
+  body {
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .brand {
+    top: 0.7rem;
+  }
+  .word {
+    letter-spacing: 0.22em;
+  }
+  .tag {
+    display: none;
+  }
+  .bubble {
+    max-width: min(15.5rem, 84vw);
+    padding: 0.7rem 0.9rem;
+  }
+}
