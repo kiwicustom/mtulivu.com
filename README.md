@@ -6,6 +6,7 @@ Guru page for [mtulivu.com](https://mtulivu.com) and [www.mtulivu.com](https://w
 - 999 original peace / meditation lines in comic text bubbles from the head (one quote every 5–10 seconds)
 - Seasons loop every 15s: summer → fall → winter → spring, with forest, lake, mountains, weather, and flying butterflies
 - Mail: [hello@mtulivu.com](mailto:hello@mtulivu.com)
+- PWA: favicon + Add to Home Screen / Chrome Install (`manifest.webmanifest`, `sw.js`)
 
 This repo’s GitHub Pages train is **kcal.lol**. Do not point this branch at the kcal Pages environment.
 

@@ -227,4 +227,30 @@
 
   guru.addEventListener("load", start, { once: true });
   if (guru.complete) start();
+
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  }
+
+  const installBtn = document.getElementById("install");
+  let installEvent = null;
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    installEvent = event;
+    if (installBtn) installBtn.hidden = false;
+  });
+
+  window.addEventListener("appinstalled", () => {
+    installEvent = null;
+    if (installBtn) installBtn.hidden = true;
+  });
+
+  installBtn?.addEventListener("click", async () => {
+    if (!installEvent) return;
+    installEvent.prompt();
+    await installEvent.userChoice.catch(() => {});
+    installEvent = null;
+    installBtn.hidden = true;
+  });
 })();
