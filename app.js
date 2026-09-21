@@ -45,7 +45,7 @@
   }
 
   function quoteDelay() {
-    return 3000 + Math.random() * 2000;
+    return 5000 + Math.random() * 5000;
   }
 
   function headPoint() {

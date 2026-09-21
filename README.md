@@ -3,7 +3,7 @@
 Guru page for [mtulivu.com](https://mtulivu.com) and [www.mtulivu.com](https://www.mtulivu.com).
 
 - Photo: `gfx-guru-sam/me-myself-and-guru-sam.png` (center of the screen)
-- 999 original peace / meditation lines in comic text bubbles from the head (one quote every 3–5 seconds)
+- 999 original peace / meditation lines in comic text bubbles from the head (one quote every 5–10 seconds)
 - Seasons loop every 15s: summer → fall → winter → spring, with forest, lake, mountains, weather, and flying butterflies
 - Mail: [hello@mtulivu.com](mailto:hello@mtulivu.com)
 
