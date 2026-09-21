@@ -14,10 +14,10 @@
     <meta name="apple-mobile-web-app-title" content="Mtulivu" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <link rel="canonical" href="https://mtulivu.com/" />
-    <link rel="icon" href="favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png" />
-    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="icon" href="favicon.ico?v=42" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png?v=42" />
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png?v=42" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png?v=42" />
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,8 +25,8 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=41" />
-    <link rel="preload" as="image" href="gfx-guru-sam/season-summer.jpg" />
+    <link rel="stylesheet" href="styles.css?v=43" />
+    <link rel="preload" as="image" href="gfx-guru-sam/season-summer.jpg" media="(min-width: 901px)" />
   </head>
   <body>
     <header class="top">
@@ -40,11 +40,101 @@
 
     <div class="scene" aria-hidden="true">
       <div class="vista">
-        <img class="vista__shot" data-shot="summer" src="gfx-guru-sam/season-summer.jpg" alt="" />
-        <img class="vista__shot" data-shot="fall" src="gfx-guru-sam/season-fall.jpg" alt="" />
-        <img class="vista__shot" data-shot="winter" src="gfx-guru-sam/season-winter.jpg" alt="" />
-        <img class="vista__shot" data-shot="spring" src="gfx-guru-sam/season-spring.jpg" alt="" />
+        <img class="vista__shot" data-shot="summer" alt="" />
+        <img class="vista__shot" data-shot="fall" alt="" />
+        <img class="vista__shot" data-shot="winter" alt="" />
+        <img class="vista__shot" data-shot="spring" alt="" />
       </div>
+      <svg class="land" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop class="sky-top" offset="0%" />
+            <stop class="sky-mid" offset="48%" />
+            <stop class="sky-bot" offset="100%" />
+          </linearGradient>
+          <linearGradient id="lakeGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop class="lake-top" offset="0%" />
+            <stop class="lake-bot" offset="100%" />
+          </linearGradient>
+          <linearGradient id="meadowGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop class="meadow-top" offset="0%" />
+            <stop class="meadow-bot" offset="100%" />
+          </linearGradient>
+          <radialGradient id="sunBloom" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff6c8" stop-opacity="0.95" />
+            <stop offset="55%" stop-color="#ffd36a" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#ffd36a" stop-opacity="0" />
+          </radialGradient>
+          <g id="oak">
+            <rect class="trunk" x="14" y="58" width="8" height="28" rx="1.5" />
+            <ellipse class="canopy" cx="18" cy="40" rx="22" ry="26" />
+            <ellipse class="canopy dim" cx="4" cy="48" rx="14" ry="16" />
+            <ellipse class="canopy dim" cx="32" cy="48" rx="14" ry="16" />
+          </g>
+          <g id="pine">
+            <polygon class="canopy" points="16,2 30,46 2,46" />
+            <polygon class="canopy dim" points="16,18 26,50 6,50" />
+            <rect class="trunk" x="13" y="48" width="6" height="18" rx="1" />
+          </g>
+          <g id="blossom">
+            <circle class="petal" cx="0" cy="-5" r="3.2" />
+            <circle class="petal" cx="4.4" cy="2.4" r="3.2" />
+            <circle class="petal" cx="-4.4" cy="2.4" r="3.2" />
+            <circle class="heart" cx="0" cy="0" r="1.6" />
+          </g>
+        </defs>
+        <rect class="sky-fill" width="1600" height="900" fill="url(#skyGrad)" />
+        <circle class="bloom" cx="800" cy="250" r="210" />
+        <circle class="sun" cx="800" cy="250" r="70" />
+        <circle class="moon" cx="280" cy="130" r="36" />
+        <ellipse class="cloud" cx="260" cy="120" rx="90" ry="28" />
+        <ellipse class="cloud" cx="330" cy="128" rx="60" ry="22" />
+        <ellipse class="cloud" cx="1180" cy="90" rx="110" ry="30" />
+        <ellipse class="cloud" cx="1260" cy="98" rx="70" ry="22" />
+        <path
+          class="mtn far"
+          d="M-20 430 L160 250 L300 360 L470 190 L640 350 L800 230 L980 360 L1160 170 L1340 330 L1520 210 L1620 300 V520 H-20 Z"
+        />
+        <path
+          class="mtn mid"
+          d="M-20 500 L120 330 L280 455 L430 300 L600 440 L760 310 L940 450 L1120 280 L1310 430 L1500 320 L1620 400 V580 H-20 Z"
+        />
+        <path
+          class="snow far"
+          d="M160 250 L210 290 L160 280 L110 295 Z M470 190 L530 245 L470 228 L415 250 Z M1160 170 L1225 230 L1160 212 L1095 235 Z"
+        />
+        <path
+          class="snow mid"
+          d="M430 300 L475 340 L430 328 L385 345 Z M760 310 L810 352 L760 338 L715 355 Z M1120 280 L1180 330 L1120 314 L1065 338 Z"
+        />
+        <path class="meadow" d="M0 540 Q280 490 560 530 T980 520 T1600 545 V900 H0 Z" fill="url(#meadowGrad)" />
+        <ellipse class="lake" cx="800" cy="628" rx="460" ry="72" fill="url(#lakeGrad)" />
+        <ellipse class="lake-shine" cx="740" cy="610" rx="210" ry="16" />
+        <g class="forest">
+          <g transform="translate(10,360) scale(5.2)"><use href="#pine" /></g>
+          <g transform="translate(70,400) scale(4.4)"><use href="#oak" /></g>
+          <g transform="translate(150,355) scale(5.8)"><use href="#pine" /></g>
+          <g transform="translate(230,410) scale(3.8)"><use href="#oak" /></g>
+          <g transform="translate(-20,450) scale(3.6)"><use href="#pine" /></g>
+          <g transform="translate(300,445) scale(3.2)"><use href="#pine" /></g>
+          <g transform="translate(1320,350) scale(5.4)"><use href="#pine" /></g>
+          <g transform="translate(1240,395) scale(4.3)"><use href="#oak" /></g>
+          <g transform="translate(1410,365) scale(5.6)"><use href="#oak" /></g>
+          <g transform="translate(1180,430) scale(3.5)"><use href="#pine" /></g>
+          <g transform="translate(1500,430) scale(3.8)"><use href="#pine" /></g>
+          <g transform="translate(1100,455) scale(3.1)"><use href="#oak" /></g>
+        </g>
+        <g class="blossoms">
+          <use href="#blossom" x="210" y="520" />
+          <use href="#blossom" x="280" y="560" />
+          <use href="#blossom" x="360" y="535" />
+          <use href="#blossom" x="1240" y="525" />
+          <use href="#blossom" x="1320" y="555" />
+          <use href="#blossom" x="1410" y="530" />
+          <use href="#blossom" x="190" y="590" />
+          <use href="#blossom" x="1450" y="575" />
+        </g>
+      </svg>
       <canvas id="weather" class="weather"></canvas>
     </div>
 
@@ -277,6 +367,6 @@
     </aside>
 
     <script src="quotes.js"></script>
-    <script src="app.js?v=35"></script>
+    <script src="app.js?v=37"></script>
   </body>
 </html>

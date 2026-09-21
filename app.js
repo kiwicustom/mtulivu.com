@@ -4,6 +4,7 @@
   const guru = document.querySelector(".guru img");
   const weather = document.getElementById("weather");
   const life = document.getElementById("life");
+  const PHOTO = window.matchMedia("(min-width: 901px)");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const SEASONS = ["summer", "fall", "winter", "spring"];
   const SEASON_MS = 5000;
@@ -45,6 +46,15 @@
     if (quoteEl && quotes.length) quoteEl.textContent = nextQuote();
     window.clearTimeout(quoteTimer);
     quoteTimer = window.setTimeout(showQuote, quoteDelay());
+  }
+
+  function loadVista() {
+    if (!PHOTO.matches) return;
+    for (const img of document.querySelectorAll(".vista__shot")) {
+      if (!img.getAttribute("src")) {
+        img.src = `gfx-guru-sam/season-${img.dataset.shot}.jpg`;
+      }
+    }
   }
 
   function viewFromHash() {
@@ -205,7 +215,9 @@
 
   window.addEventListener("hashchange", () => setView(viewFromHash()));
   window.addEventListener("resize", resizeWeather);
+  PHOTO.addEventListener("change", loadVista);
 
+  loadVista();
   setView(viewFromHash());
 
   guru.addEventListener("load", start, { once: true });
@@ -214,7 +226,7 @@
 
   if ("serviceWorker" in navigator) {
     let reloading = false;
-    navigator.serviceWorker.register("./sw.js?v=24").catch(() => {});
+    navigator.serviceWorker.register("./sw.js?v=25").catch(() => {});
     navigator.serviceWorker.addEventListener("controllerchange", () => {
       if (reloading) return;
       reloading = true;
