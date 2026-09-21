@@ -3,10 +3,10 @@
   const quoteEl = document.getElementById("quote");
   const guru = document.querySelector(".guru img");
   const weather = document.getElementById("weather");
-  const flock = document.getElementById("butterflies");
+  const life = document.getElementById("life");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const SEASONS = ["summer", "fall", "winter", "spring"];
-  const SEASON_MS = 15000;
+  const SEASON_MS = 5000;
   const VIEWS = ["home", "about", "work", "contact"];
   const WING = [
     ["#ff7eb6", "#7ad3ff"],
@@ -14,6 +14,7 @@
     ["#f7fbff", "#b9d6f2"],
     ["#9dffb0", "#f4a0c0"],
   ];
+  const LEAF = ["#d35400", "#e67e22", "#c0392b", "#f0c14b", "#8e2f0d"];
 
   let bag = [];
   let started = false;
@@ -75,67 +76,89 @@
     </svg>`;
   }
 
-  function makeButterflies() {
-    const n = reduce ? 0 : 10;
+  function birdMarkup() {
+    return `<svg viewBox="0 0 56 24" fill="none">
+      <path class="wing left" d="M28 14 C 16 4, 6 6, 2 12 C 14 10, 22 14, 28 16 Z" fill="#1a1410"/>
+      <path class="wing right" d="M28 14 C 40 4, 50 6, 54 12 C 42 10, 34 14, 28 16 Z" fill="#24180e"/>
+    </svg>`;
+  }
+
+  function spawnLife(kind, n, markup) {
     for (let i = 0; i < n; i += 1) {
-      const b = document.createElement("div");
-      b.className = "butterfly";
-      b.style.setProperty("--fly", `${18 + Math.random() * 16}s`);
-      b.style.setProperty("--delay", `${-Math.random() * 18}s`);
-      b.innerHTML = butterflyMarkup(i);
-      flock.appendChild(b);
+      const el = document.createElement("div");
+      el.className = kind;
+      el.style.setProperty("--fly", `${16 + Math.random() * 18}s`);
+      el.style.setProperty("--delay", `${-Math.random() * 18}s`);
+      el.innerHTML = typeof markup === "function" ? markup(i) : markup;
+      life.appendChild(el);
     }
+  }
+
+  function makeLife() {
+    if (reduce) return;
+    spawnLife("butterfly", 10, butterflyMarkup);
+    spawnLife("bird", 7, birdMarkup);
   }
 
   function resizeWeather() {
     weather.width = window.innerWidth;
     weather.height = window.innerHeight;
-    const count = reduce ? 0 : Math.round((weather.width * weather.height) / 18000);
+    const count = reduce ? 0 : Math.round((weather.width * weather.height) / 14000);
     flakes = Array.from({ length: count }, () => ({
       x: Math.random() * weather.width,
       y: Math.random() * weather.height,
-      r: 1.4 + Math.random() * 3.2,
-      s: 0.4 + Math.random() * 1.4,
+      r: 1.6 + Math.random() * 3.6,
+      s: 0.45 + Math.random() * 1.5,
       w: Math.random() * Math.PI * 2,
       k: Math.random(),
+      spin: Math.random() * Math.PI * 2,
     }));
   }
 
+  function paintLeaf(f) {
+    wx.save();
+    wx.translate(f.x, f.y);
+    wx.rotate(f.spin + f.y * 0.03);
+    wx.fillStyle = LEAF[Math.floor(f.k * LEAF.length)];
+    wx.beginPath();
+    wx.moveTo(0, -f.r * 1.6);
+    wx.quadraticCurveTo(f.r * 1.6, 0, 0, f.r * 1.8);
+    wx.quadraticCurveTo(-f.r * 1.6, 0, 0, -f.r * 1.6);
+    wx.fill();
+    wx.strokeStyle = "rgba(80,30,8,0.35)";
+    wx.lineWidth = 0.8;
+    wx.beginPath();
+    wx.moveTo(0, -f.r * 1.4);
+    wx.lineTo(0, f.r * 1.5);
+    wx.stroke();
+    wx.restore();
+  }
+
   function paintWeather() {
-    const name = SEASONS[season];
+    const name = document.documentElement.dataset.season || SEASONS[season];
     wx.clearRect(0, 0, weather.width, weather.height);
+    if (name === "summer" || name === "spring") {
+      if (!reduce) requestAnimationFrame(paintWeather);
+      return;
+    }
     for (const f of flakes) {
-      f.y += f.s * (name === "winter" ? 1.4 : 0.9);
-      f.x += Math.sin(f.w + f.y * 0.01) * (name === "fall" ? 1.3 : 0.6);
-      if (f.y > weather.height + 8) {
-        f.y = -8;
+      f.y += f.s * (name === "winter" ? 1.5 : 0.95);
+      f.x += Math.sin(f.w + f.y * 0.01) * (name === "fall" ? 1.4 : 0.55);
+      f.spin += name === "fall" ? 0.04 : 0;
+      if (f.y > weather.height + 12) {
+        f.y = -12;
         f.x = Math.random() * weather.width;
       }
-      if (f.x < -10) f.x = weather.width + 8;
-      if (f.x > weather.width + 10) f.x = -8;
+      if (f.x < -12) f.x = weather.width + 10;
+      if (f.x > weather.width + 12) f.x = -10;
 
       if (name === "winter") {
-        wx.fillStyle = "rgba(255,255,255,0.85)";
+        wx.fillStyle = "rgba(255,255,255,0.9)";
         wx.beginPath();
         wx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
         wx.fill();
-      } else if (name === "fall") {
-        wx.save();
-        wx.translate(f.x, f.y);
-        wx.rotate(f.y * 0.04);
-        wx.fillStyle = f.k > 0.5 ? "#d35400" : "#f0c14b";
-        wx.fillRect(-f.r, -f.r * 0.5, f.r * 2.2, f.r * 1.1);
-        wx.restore();
-      } else if (name === "spring") {
-        wx.fillStyle = f.k > 0.5 ? "rgba(244,160,192,0.85)" : "rgba(255,227,138,0.8)";
-        wx.beginPath();
-        wx.ellipse(f.x, f.y, f.r * 1.4, f.r * 0.7, f.y * 0.03, 0, Math.PI * 2);
-        wx.fill();
       } else {
-        wx.fillStyle = "rgba(255,241,168,0.55)";
-        wx.beginPath();
-        wx.arc(f.x, f.y, f.r * 0.6, 0, Math.PI * 2);
-        wx.fill();
+        paintLeaf(f);
       }
     }
     if (!reduce) requestAnimationFrame(paintWeather);
@@ -155,7 +178,7 @@
     if (started) return;
     started = true;
     showQuote();
-    makeButterflies();
+    makeLife();
     resizeWeather();
     paintWeather();
     startSeasons();
@@ -187,6 +210,7 @@
 
   guru.addEventListener("load", start, { once: true });
   if (guru.complete) start();
+  window.setTimeout(start, 1200);
 
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js").catch(() => {});

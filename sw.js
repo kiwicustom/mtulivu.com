@@ -1,9 +1,9 @@
-const CACHE = "mtulivu-v17";
+const CACHE = "mtulivu-v19";
 const PRECACHE = [
   "./",
   "./index.html",
-  "./styles.css?v=26",
-  "./app.js?v=26",
+  "./styles.css?v=29",
+  "./app.js?v=29",
   "./quotes.js",
   "./manifest.webmanifest",
   "./favicon.ico",
@@ -13,7 +13,11 @@ const PRECACHE = [
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/icon-maskable-512.png",
-  "./gfx-guru-sam/guru-sam.png",
+  "./gfx-guru-sam/guru-samhilt.png",
+  "./gfx-guru-sam/season-summer.jpg",
+  "./gfx-guru-sam/season-fall.jpg",
+  "./gfx-guru-sam/season-winter.jpg",
+  "./gfx-guru-sam/season-spring.jpg",
 ];
 
 self.addEventListener("install", (event) => {
