@@ -4,7 +4,7 @@ Identity: **[MTULIVU.md](./MTULIVU.md)** — the word, the stance, the guru, the
 
 Guru page for [mtulivu.com](https://mtulivu.com) and [www.mtulivu.com](https://www.mtulivu.com).
 
-- Photo: `gfx-guru-sam/me-myself-and-guru-sam.png` (left of the lake; always visible)
+- Photo: `gfx-guru-sam/guru-sam.png` (center of the lake; levitating)
 - 999 original lines in text bubbles from the head (one quote every 5–10 seconds)
 - Seasons loop every 15s: summer → fall → winter → spring
 - Mail: [hello@mtulivu.com](mailto:hello@mtulivu.com)

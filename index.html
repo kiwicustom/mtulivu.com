@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-season="summer">
+<html lang="en" data-season="summer" data-view="home">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,17 +22,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20" />
+    <link rel="stylesheet" href="styles.css?v=26" />
   </head>
   <body>
-    <header class="brand">
-      <p class="word" lang="sw">Mtulivu</p>
-      <p class="pos">noun<span>·</span>plural <i lang="sw">watulivu</i></p>
-      <p class="meaning">a calm or composed person</p>
-      <p class="ety"><i>m-</i> + <i>-tulivu</i> · tranquil, pacific</p>
+    <header class="top">
+      <div class="brand">
+        <p class="word" lang="sw">Mtulivu</p>
+        <p class="tag">Stay composed. Then ship.</p>
+        <p class="meaning">a calm or composed person</p>
+        <p class="ety"><i>m-</i> + <i>-tulivu</i> · tranquil, pacific</p>
+      </div>
+      <nav class="nav" aria-label="Site">
+        <a href="#home" data-view="home" class="is-on">Home</a>
+        <a href="#about" data-view="about">About</a>
+        <a href="#work" data-view="work">Work</a>
+        <a href="#values" data-view="home">Values</a>
+        <a href="#contact" data-view="contact">Contact</a>
+        <a class="talk" href="#contact" data-view="contact">Let’s talk <span aria-hidden="true">→</span></a>
+      </nav>
     </header>
 
     <div class="scene" aria-hidden="true">
@@ -51,6 +61,11 @@
             <stop class="meadow-top" offset="0%" />
             <stop class="meadow-bot" offset="100%" />
           </linearGradient>
+          <radialGradient id="sunBloom" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff6c8" stop-opacity="0.95" />
+            <stop offset="55%" stop-color="#ffd36a" stop-opacity="0.45" />
+            <stop offset="100%" stop-color="#ffd36a" stop-opacity="0" />
+          </radialGradient>
           <g id="oak">
             <rect class="trunk" x="14" y="58" width="8" height="28" rx="1.5" />
             <ellipse class="canopy" cx="18" cy="40" rx="22" ry="26" />
@@ -71,14 +86,14 @@
         </defs>
 
         <rect class="sky-fill" width="1600" height="900" fill="url(#skyGrad)" />
-        <circle class="sun" cx="1240" cy="148" r="58" />
-        <circle class="sun-glow" cx="1240" cy="148" r="92" />
+        <circle class="bloom" cx="800" cy="250" r="210" />
+        <circle class="sun" cx="800" cy="250" r="70" />
         <circle class="moon" cx="280" cy="130" r="36" />
 
         <ellipse class="cloud" cx="260" cy="120" rx="90" ry="28" />
         <ellipse class="cloud" cx="330" cy="128" rx="60" ry="22" />
-        <ellipse class="cloud" cx="980" cy="90" rx="110" ry="30" />
-        <ellipse class="cloud" cx="1060" cy="98" rx="70" ry="22" />
+        <ellipse class="cloud" cx="1180" cy="90" rx="110" ry="30" />
+        <ellipse class="cloud" cx="1260" cy="98" rx="70" ry="22" />
 
         <path
           class="mtn far"
@@ -133,32 +148,117 @@
 
     <div id="butterflies" class="butterflies" aria-hidden="true"></div>
 
+    <ul class="values">
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M7 16a5 5 0 0 1 .7-9.9A6 6 0 0 1 18.2 9H19a4 4 0 0 1 0 8H7Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span>Cloud<b>Build</b></span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="9" cy="8" r="2.2" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <circle cx="16" cy="9" r="1.8" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path
+            d="M4.5 18c.4-2.6 2.4-4 4.5-4s4.1 1.4 4.5 4M13 18c.2-1.6 1.4-2.7 3-2.7 1.5 0 2.6.9 3 2.4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          />
+        </svg>
+        <span>People<b>Grow</b></span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 3.5a6 6 0 0 1 3.2 10.9V17h-6.4v-2.6A6 6 0 0 1 12 3.5ZM10 19h4M10.5 21h3"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span>Ideas<b>Create</b></span>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M3 18 9 8l4 6 3-4 5 8H3Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <span>Life<b>Balance</b></span>
+      </li>
+    </ul>
+
+    <p class="seasons-line">
+      Different Seasons.<br />
+      Same Focus.
+      <span>Tech · People · Hockey · Life</span>
+    </p>
+
     <figure class="guru">
       <img
-        src="gfx-guru-sam/me-myself-and-guru-sam.png"
+        src="gfx-guru-sam/guru-sam.png?v=24"
         alt="Guru Sam, seated in saffron robes"
-        width="1234"
-        height="1275"
+        width="1222"
+        height="1287"
       />
+      <svg class="rock" viewBox="0 0 900 260" aria-hidden="true">
+        <ellipse cx="450" cy="210" rx="340" ry="28" fill="rgba(20,12,6,0.35)" />
+        <path
+          fill="#5c5346"
+          d="M70 168 C 140 92, 280 70, 450 78 C 640 88, 790 120, 850 176 C 790 232, 120 236, 70 168 Z"
+        />
+        <path
+          fill="#6e6758"
+          d="M120 170 C 210 114, 340 108, 500 118 C 680 130, 800 158, 820 188 C 700 214, 180 214, 120 170 Z"
+        />
+        <path fill="#7a8a55" opacity="0.85" d="M210 132 C 260 118, 330 128, 360 148 C 300 156, 220 150, 210 132 Z" />
+        <path fill="#6f804c" opacity="0.8" d="M520 128 C 590 118, 680 136, 710 158 C 620 164, 530 148, 520 128 Z" />
+        <path fill="#8b9a62" opacity="0.7" d="M390 122 C 440 114, 490 126, 500 146 C 440 150, 392 140, 390 122 Z" />
+      </svg>
     </figure>
 
-    <div id="bubbles" class="sky" aria-live="polite" aria-atomic="false"></div>
+    <aside class="quote">
+      <p id="quote">Ideas flow better in calm waters.</p>
+      <a class="talk talk--solid" href="#contact" data-view="contact">Let’s talk <span aria-hidden="true">→</span></a>
+    </aside>
 
-    <button type="button" id="install" class="install" hidden>Install</button>
+    <p class="mark">Mtulivu.com</p>
 
-    <aside class="folio" id="work">
-      <p class="folio__kicker">Samuli Hiltunen</p>
-      <h1 class="folio__title">Inventor. Builder. Cloud architect.</h1>
-      <p class="folio__lead">
+    <div class="social">
+      <button type="button" id="install" class="install" hidden>Install</button>
+      <a href="https://www.linkedin.com/in/smuli/" rel="me" aria-label="LinkedIn">in</a>
+      <a href="mailto:hello@mtulivu.com" aria-label="Email">@</a>
+    </div>
+
+    <aside class="sheet" id="about" hidden>
+      <button type="button" class="sheet__close" data-view="home" aria-label="Close">×</button>
+      <p class="sheet__kicker">Samuli Hiltunen</p>
+      <h1>Inventor. Builder. Cloud architect.</h1>
+      <p>
         Stay composed, then ship. Solution engineer between customers, business and
         technology — from the first requirement to production. Twenty-five years.
         The cloud included.
       </p>
-      <p class="folio__links">
-        <a href="mailto:hello@mtulivu.com">hello@mtulivu.com</a>
-        <a href="https://www.linkedin.com/in/smuli/" rel="me">LinkedIn</a>
-      </p>
+    </aside>
 
+    <aside class="sheet sheet--work" id="work" hidden>
+      <button type="button" class="sheet__close" data-view="home" aria-label="Close">×</button>
+      <p class="sheet__kicker">Work</p>
+      <h1>Inventor. Builder. Cloud architect.</h1>
       <div class="folio__cols">
         <section>
           <h2>Inventions</h2>
@@ -200,11 +300,23 @@
           </ol>
         </section>
       </div>
-
       <p class="folio__craft">Kubernetes · Azure · GCP · Linux · Vue · APIs · PostgreSQL</p>
     </aside>
 
+    <aside class="sheet" id="contact" hidden>
+      <button type="button" class="sheet__close" data-view="home" aria-label="Close">×</button>
+      <p class="sheet__kicker">Contact</p>
+      <h1>Let’s talk.</h1>
+      <p>
+        Write to
+        <a href="mailto:hello@mtulivu.com">hello@mtulivu.com</a>
+        or find me on
+        <a href="https://www.linkedin.com/in/smuli/" rel="me">LinkedIn</a>.
+      </p>
+      <a class="talk talk--solid" href="mailto:hello@mtulivu.com">hello@mtulivu.com <span aria-hidden="true">→</span></a>
+    </aside>
+
     <script src="quotes.js"></script>
-    <script src="app.js?v=20"></script>
+    <script src="app.js?v=26"></script>
   </body>
 </html>
