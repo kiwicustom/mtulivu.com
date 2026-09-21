@@ -73,7 +73,7 @@ Quotes stay on the lake. They do not cover the CV.
 
 ## Lake
 
-- Photo: `gfx-guru-sam/guru-samhilt.png` — center of the lake, slight levitation
+- Photo: `gfx-guru-sam/sam-guru-with-kcal-buddy-kcal.lol.png` — center of the lake, slight levitation
 - One quote at a time, every 5–10 seconds, as a text bubble from the head
 - 999 original lines (peace / composure). Click the lake for another
 - Seasons every 5s from the four-panel lake photo: summer → fall → winter → spring, with butterflies, falling leaves, snow, and birds

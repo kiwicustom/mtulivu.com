@@ -7,7 +7,7 @@
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const SEASONS = ["summer", "fall", "winter", "spring"];
   const SEASON_MS = 5000;
-  const VIEWS = ["home", "about", "work", "contact"];
+  const VIEWS = ["home", "about", "work", "values", "contact"];
   const WING = [
     ["#ff7eb6", "#7ad3ff"],
     ["#ffd36a", "#e25c2a"],
@@ -49,19 +49,19 @@
 
   function viewFromHash() {
     const name = (location.hash || "#home").slice(1);
-    if (name === "values") return "home";
     return VIEWS.includes(name) ? name : "home";
   }
 
   function setView(name) {
     const view = VIEWS.includes(name) ? name : "home";
     document.documentElement.dataset.view = view;
-    for (const id of ["about", "work", "contact"]) {
+    for (const id of ["about", "work", "values", "contact"]) {
       const sheet = document.getElementById(id);
       if (sheet) sheet.hidden = id !== view;
     }
-    for (const link of document.querySelectorAll(".nav a[data-view]")) {
-      link.classList.toggle("is-on", link.dataset.view === view);
+    for (const link of document.querySelectorAll(".plank[data-view]")) {
+      const href = link.getAttribute("href") || "";
+      link.classList.toggle("is-on", href === `#${view}`);
     }
     const want = view === "home" ? "#home" : `#${view}`;
     if (location.hash !== want) history.replaceState(null, "", want);
@@ -191,7 +191,7 @@
       setView(viewLink.dataset.view);
       return;
     }
-    if (event.target.closest("a, button, .sheet, .quote, .nav")) return;
+    if (event.target.closest("a, button, .sheet, .quote, .nav, .planks, .together")) return;
     if (document.documentElement.dataset.view !== "home") {
       setView("home");
       return;
@@ -213,7 +213,13 @@
   window.setTimeout(start, 1200);
 
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js").catch(() => {});
+    let reloading = false;
+    navigator.serviceWorker.register("./sw.js?v=24").catch(() => {});
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (reloading) return;
+      reloading = true;
+      location.reload();
+    });
   }
 
   const installBtn = document.getElementById("install");

@@ -339,8 +339,12 @@ html[data-season="spring"] .bird {
 .brand,
 .nav a,
 .talk,
+.rail,
+.planks,
+.together,
 .values,
 .quote,
+.kit,
 .social a,
 .install,
 .sheet {
@@ -398,19 +402,6 @@ html[data-season="spring"] .bird {
   font-family: Inter, system-ui, sans-serif;
 }
 
-.nav a {
-  color: rgba(255, 248, 234, 0.82);
-  text-decoration: none;
-  font-size: 0.92rem;
-  font-weight: 500;
-  text-shadow: 0 1px 10px rgba(20, 12, 6, 0.45);
-}
-
-.nav a.is-on,
-.nav a:hover {
-  color: #fff;
-}
-
 .talk {
   display: inline-flex;
   align-items: center;
@@ -421,6 +412,7 @@ html[data-season="spring"] .bird {
   border-radius: 999px;
   color: #fff !important;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .talk:hover {
@@ -443,16 +435,161 @@ html[data-season="spring"] .bird {
   background: #f07828;
 }
 
-.values {
+.rail {
   position: fixed;
-  left: 1.6rem;
-  top: 38%;
-  z-index: 5;
+  left: 1.15rem;
+  top: 8.3rem;
+  bottom: 0.45rem;
+  z-index: 6;
+  width: 14.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.rail > * {
+  pointer-events: auto;
+  position: static;
+  left: auto;
+  right: auto;
+  top: auto;
+  bottom: auto;
+}
+
+.planks {
+  position: relative;
+  left: auto;
+  top: auto;
+  z-index: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  gap: 0.48rem;
+  margin: 0.15rem 0 0;
+  padding: 0.35rem 0 0.55rem 1.35rem;
+  filter: drop-shadow(4px 10px 14px rgba(8, 4, 0, 0.5));
+}
+
+.planks__post {
+  position: absolute;
+  left: 0.28rem;
+  top: -1.1rem;
+  bottom: -1.3rem;
+  width: 0.92rem;
+  border-radius: 3px;
+  background:
+    linear-gradient(90deg, #1a1008 0%, #6a4424 36%, #3d2614 58%, #5a3a20 78%, #140c06 100%);
+  box-shadow:
+    inset 2px 0 0 rgba(255, 220, 170, 0.18),
+    inset -2px 0 0 rgba(0, 0, 0, 0.35);
+}
+
+html[data-season="winter"] .planks__post::after {
+  content: "";
+  position: absolute;
+  left: -0.22rem;
+  right: -0.22rem;
+  top: -0.28rem;
+  height: 0.55rem;
+  border-radius: 40% 40% 30% 30%;
+  background: #f4f7fb;
+  box-shadow: 0 2px 0 rgba(255, 255, 255, 0.7);
+}
+
+.plank {
+  --rot: -2.2deg;
+  position: relative;
+  display: block;
+  min-width: 10.4rem;
+  padding: 0.68rem 1.55rem 0.62rem 1.15rem;
+  color: #f6ead0;
+  text-decoration: none;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(28, 14, 6, 0.65);
+  background:
+    repeating-linear-gradient(
+      180deg,
+      rgba(255, 224, 180, 0.14) 0 1px,
+      transparent 1px 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #7a5230 0 2px,
+      #5a381c 2px 5px,
+      #3e2612 5px 7px,
+      #6a4424 7px 10px
+    );
+  clip-path: polygon(0 10%, 86% 0, 100% 50%, 86% 100%, 0 90%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 230, 190, 0.28),
+    inset 0 -3px 0 rgba(20, 8, 0, 0.35);
+  transform: rotate(var(--rot));
+  transform-origin: 8% 50%;
+}
+
+.plank::before {
+  content: "";
+  position: absolute;
+  left: 0.55rem;
+  top: 50%;
+  width: 0.42rem;
+  height: 0.42rem;
+  margin-top: -0.21rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #c4a06a, #3a2410 70%);
+  box-shadow: 0 0 0 1px rgba(20, 8, 0, 0.35);
+}
+
+.plank:nth-child(2) {
+  --rot: -2.6deg;
+  min-width: 11.2rem;
+}
+.plank:nth-child(3) {
+  --rot: 1.8deg;
+  min-width: 12rem;
+}
+.plank:nth-child(4) {
+  --rot: -1.4deg;
+  min-width: 10.4rem;
+}
+.plank:nth-child(5) {
+  --rot: 2.6deg;
+  min-width: 12.4rem;
+}
+.plank:nth-child(6) {
+  --rot: -1.8deg;
+  min-width: 11.6rem;
+}
+
+.plank:hover,
+.plank.is-on {
+  color: #fff8ea;
+  filter: brightness(1.12);
+}
+
+.plank.is-on {
+  outline: 1px solid rgba(255, 232, 180, 0.35);
+}
+
+.values {
+  position: static;
+  left: auto;
+  top: auto;
+  z-index: auto;
   margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 1.15rem;
+  flex-shrink: 0;
+  gap: 0.42rem;
 }
 
 .values li {
@@ -464,8 +601,8 @@ html[data-season="spring"] .bird {
 }
 
 .values svg {
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 1.35rem;
+  height: 1.35rem;
   flex-shrink: 0;
   opacity: 0.92;
 }
@@ -473,9 +610,9 @@ html[data-season="spring"] .bird {
 .values span {
   display: grid;
   font-family: Inter, system-ui, sans-serif;
-  font-size: 0.92rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.1;
 }
 
 .values b {
@@ -484,30 +621,37 @@ html[data-season="spring"] .bird {
   opacity: 0.78;
 }
 
-.seasons-line {
+.together {
   position: fixed;
-  right: 2rem;
-  top: 26%;
-  z-index: 5;
+  right: 6.2rem;
+  top: 1.2rem;
+  z-index: 6;
   margin: 0;
-  max-width: 14rem;
+  max-width: 16rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   font-family: "Great Vibes", "Cormorant Garamond", cursive;
-  font-size: clamp(2.2rem, 3.6vw, 3.1rem);
-  line-height: 1.08;
+  font-size: clamp(2.4rem, 4.2vw, 3.5rem);
+  line-height: 0.98;
   font-weight: 400;
+  font-style: italic;
   color: #fff;
   text-align: right;
-  text-shadow: 0 2px 16px rgba(20, 12, 6, 0.4);
+  text-shadow: 0 2px 16px rgba(20, 12, 6, 0.45);
 }
 
-.seasons-line span {
-  display: block;
-  margin-top: 0.85rem;
-  font-family: Inter, system-ui, sans-serif;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  opacity: 0.88;
+.together em {
+  display: inline-block;
+  font-style: italic;
+  color: #fff;
+  border-bottom: 0.12em solid #e56b1a;
+  padding-bottom: 0.02em;
+}
+
+.together .talk--solid {
+  margin: 0.95rem 0 0;
+  font-style: normal;
 }
 
 .guru {
@@ -527,7 +671,7 @@ html[data-season="spring"] .bird {
   display: block;
   width: auto;
   height: auto;
-  max-width: min(58vw, 740px);
+  max-width: min(72vw, 880px);
   max-height: 78vh;
   margin-bottom: -3vh;
   object-fit: contain;
@@ -562,11 +706,11 @@ html[data-season="spring"] .bird {
 
 .quote {
   position: fixed;
-  left: 1.6rem;
-  bottom: 3.4rem;
-  z-index: 6;
-  width: min(17.5rem, 78vw);
-  padding: 1.05rem 1.1rem 1.15rem;
+  left: calc(50% + 9.5rem);
+  top: 16vh;
+  z-index: 5;
+  width: min(18.5rem, 24vw);
+  padding: 0.95rem 1.05rem 1rem;
   color: #fff8ea;
   background: rgba(22, 16, 10, 0.42);
   border: 1px solid rgba(255, 244, 222, 0.16);
@@ -577,20 +721,20 @@ html[data-season="spring"] .bird {
 
 .quote p {
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.35;
+  font-size: 0.95rem;
+  line-height: 1.3;
   font-style: italic;
-  min-height: 2.7em;
+  min-height: 0;
 }
 
 .mark {
-  position: fixed;
-  left: 1.7rem;
-  bottom: 0.85rem;
-  z-index: 5;
-  margin: 0;
+  position: static;
+  left: auto;
+  bottom: auto;
+  z-index: auto;
+  margin: 0.15rem 0 0;
   font-family: Inter, system-ui, sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -599,7 +743,7 @@ html[data-season="spring"] .bird {
 
 .social {
   position: fixed;
-  right: 1.6rem;
+  right: 5.8rem;
   bottom: 1rem;
   z-index: 6;
   margin: 0;
@@ -623,7 +767,7 @@ html[data-season="spring"] .bird {
 
 .cairn {
   position: fixed;
-  right: 1.8rem;
+  right: 6rem;
   bottom: 7.2rem;
   z-index: 3;
   margin: 0;
@@ -653,30 +797,74 @@ html[data-season="spring"] .bird {
   text-shadow: 0 1px 8px rgba(12, 8, 4, 0.7);
 }
 
-.mug {
-  position: fixed;
-  right: 8.4rem;
-  bottom: 0.7rem;
-  z-index: 4;
-  margin: 0;
+.kit {
+  position: static;
+  left: auto;
+  bottom: auto;
+  z-index: auto;
+  margin: auto 0 0;
+  width: 9.6rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 10px 16px rgba(8, 4, 0, 0.4));
+}
+
+.kit__mug {
+  position: relative;
+  z-index: 1;
   width: 5.6rem;
+  margin: 0 auto 0.15rem;
+  padding: 1.15rem 0.45rem 0.7rem;
+  color: #f4ead4;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.08), transparent 46%),
+    linear-gradient(180deg, #2a2420 0%, #14110e 100%);
+  border-radius: 0.55rem 0.55rem 0.7rem 0.7rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    6px 8px 0 -4px #1a1612;
 }
 
-.mug svg {
+.kit__mug::after {
+  content: "";
+  position: absolute;
+  right: -0.85rem;
+  top: 1.05rem;
+  width: 1.15rem;
+  height: 1.85rem;
+  border: 0.38rem solid #14110e;
+  border-left: 0;
+  border-radius: 0 1rem 1rem 0;
+}
+
+.kit__mug p {
+  margin: 0;
+  font-family: "Great Vibes", "Cormorant Garamond", cursive;
+  font-size: 0.78rem;
+  line-height: 1.05;
+  font-weight: 400;
+}
+
+.kit__peak {
   display: block;
-  width: 100%;
-  overflow: visible;
+  width: 2.1rem;
+  height: 0.8rem;
+  margin: 0.28rem auto 0;
+  fill: none;
+  stroke: rgba(244, 234, 212, 0.85);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
 }
 
-.mug text {
-  fill: rgba(255, 244, 222, 0.82);
-  font-family: Inter, system-ui, sans-serif;
-  font-size: 7px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
+.kit__steam {
+  position: absolute;
+  left: 0.55rem;
+  right: 0.55rem;
+  top: -1.05rem;
+  height: 1.15rem;
 }
 
-.mug .steam path {
+.kit__steam path {
   fill: none;
   stroke: rgba(255, 248, 234, 0.55);
   stroke-width: 2;
@@ -684,11 +872,62 @@ html[data-season="spring"] .bird {
   animation: steam 2.4s ease-in-out infinite;
 }
 
-.mug .steam path:nth-child(2) {
+.kit__steam path:nth-child(2) {
   animation-delay: 0.4s;
 }
-.mug .steam path:nth-child(3) {
+.kit__steam path:nth-child(3) {
   animation-delay: 0.8s;
+}
+
+.kit__books {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.12rem;
+}
+
+.kit__books li {
+  margin: 0 auto;
+  padding: 0.28rem 0.7rem 0.22rem;
+  color: #e8d7b0;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(180deg, #6a4a2c 0%, #3a2818 100%);
+  border: 1px solid rgba(20, 10, 4, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 220, 170, 0.16);
+}
+
+.kit__books li:nth-child(1) {
+  width: 92%;
+  border-radius: 0.2rem 0.2rem 0 0;
+}
+.kit__books li:nth-child(2) {
+  width: 97%;
+}
+.kit__books li:nth-child(3) {
+  width: 100%;
+}
+.kit__books li:nth-child(4) {
+  width: 96%;
+}
+.kit__books li:nth-child(5) {
+  width: 90%;
+  border-radius: 0 0 0.2rem 0.2rem;
+}
+
+.kit__pen {
+  display: block;
+  width: 6.2rem;
+  height: 0.28rem;
+  margin: 0.45rem 0 0 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #1a1410 0%, #3a342e 40%, #c9b48a 78%, #1a1410 100%);
+  transform: rotate(-8deg);
 }
 
 @keyframes steam {
@@ -723,19 +962,19 @@ html[data-season="spring"] .bird {
 .sheet {
   position: fixed;
   z-index: 8;
-  top: 5.6rem;
+  top: 17.4rem;
   right: 1.4rem;
   width: min(36rem, 44vw);
-  max-height: calc(100vh - 7.2rem);
+  max-height: calc(100vh - 18.8rem);
   padding: 1.15rem 1.3rem 1.2rem;
-  overflow: hidden;
+  overflow: hidden auto;
   color: #fff8ea;
   font-family: Inter, system-ui, sans-serif;
-  background: rgba(16, 10, 5, 0.78);
-  border: 1px solid rgba(255, 244, 222, 0.18);
+  background: rgba(16, 10, 5, 0.73);
+  border: 1px solid rgba(255, 244, 222, 0.14);
   border-radius: 1.25rem;
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(20px);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(8px);
 }
 
 .sheet[hidden] {
@@ -772,12 +1011,14 @@ html[data-season="spring"] .bird {
   font-size: clamp(1.25rem, 2vw, 1.65rem);
   font-weight: 700;
   letter-spacing: -0.03em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
 .sheet p {
   margin: 0.7rem 0 0;
   font-size: 0.92rem;
   line-height: 1.45;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
 }
 
 .sheet a {
@@ -861,21 +1102,72 @@ html[data-season="spring"] .bird {
   color: rgba(255, 244, 222, 0.58);
 }
 
+.value-cards {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.value-cards li {
+  margin: 0;
+  padding: 0.75rem 0.8rem 0.85rem;
+  background: rgba(255, 244, 222, 0.06);
+  border: 1px solid rgba(255, 244, 222, 0.14);
+  border-radius: 0.9rem;
+}
+
+.value-cards h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #fff8ea;
+}
+
+.value-cards h2 b {
+  font-weight: 500;
+  color: var(--gold);
+}
+
+.value-cards p {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: rgba(255, 244, 222, 0.76);
+}
+
+html[data-view="values"] .values li {
+  color: var(--gold);
+  text-shadow: 0 0 16px rgba(240, 193, 75, 0.5);
+}
+
+html[data-view="values"] .values svg {
+  opacity: 1;
+  filter: drop-shadow(0 0 8px rgba(240, 193, 75, 0.55));
+}
+
 html[data-view="work"] .quote,
 html[data-view="about"] .quote,
 html[data-view="contact"] .quote,
+html[data-view="values"] .quote,
 html[data-view="work"] .values,
 html[data-view="about"] .values,
 html[data-view="contact"] .values,
-html[data-view="work"] .seasons-line,
-html[data-view="about"] .seasons-line,
-html[data-view="contact"] .seasons-line,
 html[data-view="work"] .cairn,
 html[data-view="about"] .cairn,
 html[data-view="contact"] .cairn,
-html[data-view="work"] .mug,
-html[data-view="about"] .mug,
-html[data-view="contact"] .mug {
+html[data-view="values"] .cairn,
+html[data-view="work"] .kit,
+html[data-view="about"] .kit,
+html[data-view="contact"] .kit,
+html[data-view="values"] .kit {
   opacity: 0.12;
   pointer-events: none;
 }
@@ -886,7 +1178,7 @@ html[data-view="contact"] .mug {
   .bird,
   .bird .wing,
   .guru img,
-  .mug .steam path {
+  .kit__steam path {
     animation: none;
   }
   .vista__shot,
@@ -898,18 +1190,29 @@ html[data-view="contact"] .mug {
 
 @media (max-width: 900px) {
   .values,
-  .seasons-line,
   .mark,
   .cairn,
-  .mug {
+  .kit {
     display: none;
+  }
+  .rail {
+    top: 5.4rem;
+    width: 12.2rem;
+  }
+  .quote {
+    left: auto;
+    right: 1.1rem;
+    top: 9.2rem;
+    width: min(14rem, 48vw);
   }
   .nav a:not(.talk) {
     display: none;
   }
-  .quote {
-    left: 1rem;
-    bottom: 1rem;
+  .together {
+    top: 0.7rem;
+    right: 1.2rem;
+    font-size: 1.7rem;
+    max-width: 9.5rem;
   }
   .guru {
     padding-bottom: 18vh;
@@ -928,5 +1231,8 @@ html[data-view="contact"] .mug {
     top: auto;
     bottom: 0.7rem;
     max-height: 46vh;
+  }
+  .value-cards {
+    grid-template-columns: 1fr;
   }
 }
