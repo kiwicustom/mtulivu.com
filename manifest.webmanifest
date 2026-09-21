@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "Mtulivu — The Calm One",
+  "name": "Mtulivu — Samuli Hiltunen",
   "short_name": "Mtulivu",
-  "description": "Mtulivu — The Calm One. Peace, meditation, and 999 quiet thoughts.",
+  "description": "Mtulivu — a calm or composed person. Inventions and work by Samuli Hiltunen.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

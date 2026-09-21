@@ -4,16 +4,18 @@
   const guru = document.querySelector(".guru img");
   const weather = document.getElementById("weather");
   const flock = document.getElementById("butterflies");
+  const folio = document.getElementById("work");
+  const brand = document.querySelector(".brand");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const HEAD = { x: 0.5, y: 0.235 };
   const SEASONS = ["summer", "fall", "winter", "spring"];
   const SEASON_MS = 15000;
   const SLOTS = [
-    { deg: -150, dist: 0.42 },
-    { deg: -30, dist: 0.42 },
-    { deg: 178, dist: 0.48 },
-    { deg: 2, dist: 0.48 },
-    { deg: -118, dist: 0.5 },
+    { deg: -38, dist: 0.36 },
+    { deg: -16, dist: 0.34 },
+    { deg: 24, dist: 0.32 },
+    { deg: 148, dist: 0.3 },
+    { deg: -54, dist: 0.32 },
   ];
   const WING = [
     ["#ff7eb6", "#7ad3ff"],
@@ -65,34 +67,147 @@
   }
 
   function clamp(n, min, max) {
+    if (min > max) return (min + max) / 2;
     return Math.min(max, Math.max(min, n));
   }
 
-  function placeBubble(el) {
+  function lakeRect() {
+    const pad = 16;
+    const folioBox = folio?.getBoundingClientRect();
+    const mobile = window.matchMedia("(max-width: 640px)").matches;
+    const box = {
+      left: pad,
+      top: pad,
+      right: window.innerWidth - pad,
+      bottom: window.innerHeight - pad,
+    };
+    if (!folioBox || folioBox.width < 8) return box;
+    if (mobile) {
+      box.bottom = Math.min(box.bottom, folioBox.top - pad);
+    } else {
+      box.right = Math.min(box.right, folioBox.left - pad);
+    }
+    return box;
+  }
+
+  function headerBlock() {
+    if (!brand) return null;
+    const b = brand.getBoundingClientRect();
+    return {
+      left: 0,
+      top: 0,
+      right: b.right + 18,
+      bottom: b.bottom + 18,
+    };
+  }
+
+  function hits(x, y, hw, hh, rect) {
+    if (!rect) return false;
+    return x + hw > rect.left && x - hw < rect.right && y + hh > rect.top && y - hh < rect.bottom;
+  }
+
+  function keepInLake(x, y, hw, hh, lake, from) {
+    const minX = lake.left + hw;
+    const maxX = Math.max(minX, lake.right - hw);
+    const minY = lake.top + hh;
+    const maxY = Math.max(minY, lake.bottom - hh);
+    if (x >= minX && x <= maxX && y >= minY && y <= maxY) return { x, y };
+    const dx = x - from.x;
+    const dy = y - from.y;
+    let t0 = 0;
+    let t1 = 1;
+    for (let i = 0; i < 14; i += 1) {
+      const t = (t0 + t1) / 2;
+      const cx = from.x + dx * t;
+      const cy = from.y + dy * t;
+      if (cx >= minX && cx <= maxX && cy >= minY && cy <= maxY) t0 = t;
+      else t1 = t;
+    }
+    return {
+      x: clamp(from.x + dx * t0, minX, maxX),
+      y: clamp(from.y + dy * t0, minY, maxY),
+    };
+  }
+
+  function legal(x, y, hw, hh, lake, face, header) {
+    const minX = lake.left + hw;
+    const maxX = Math.max(minX, lake.right - hw);
+    const minY = lake.top + hh;
+    const maxY = Math.max(minY, lake.bottom - hh);
+    if (x < minX - 0.5 || x > maxX + 0.5 || y < minY - 0.5 || y > maxY + 0.5) return false;
+    if (hits(x, y, hw, hh, header)) return false;
+    if (hits(x, y, hw, hh, face)) return false;
+    return true;
+  }
+
+  function shoveOut(x, y, hw, hh, lake, header, head) {
+    if (!hits(x, y, hw, hh, header)) return { x, y };
+    const down = keepInLake(x, header.bottom + hh + 8, hw, hh, lake, head);
+    const right = keepInLake(header.right + hw + 8, y, hw, hh, lake, head);
+    const dr = (right.x - head.x) ** 2 + (right.y - head.y) ** 2;
+    const dd = (down.x - head.x) ** 2 + (down.y - head.y) ** 2;
+    return dr < dd ? right : down;
+  }
+
+  function placeBubble(el, slotIndex = slot) {
+    const lake = lakeRect();
+    const header = headerBlock();
+    const lakeW = Math.max(140, lake.right - lake.left);
+    el.style.maxWidth = `${Math.min(280, lakeW)}px`;
+
     const head = headPoint();
     const box = guru.getBoundingClientRect();
-    const chosen = SLOTS[slot % SLOTS.length];
-    slot += 1;
-    const deg = chosen.deg + (Math.random() * 10 - 5);
-    const rad = (deg * Math.PI) / 180;
-    const dist = box.width * (chosen.dist + Math.random() * 0.04);
-    let x = head.x + Math.cos(rad) * dist;
-    let y = head.y + Math.sin(rad) * dist;
-    const faceLeft = box.left + box.width * 0.32;
-    const faceRight = box.left + box.width * 0.68;
-    const faceTop = box.top + box.height * 0.02;
-    const faceBottom = box.top + box.height * 0.44;
-    if (x > faceLeft && x < faceRight && y > faceTop && y < faceBottom) {
-      x = x < (faceLeft + faceRight) / 2 ? faceLeft - 24 : faceRight + 24;
+    const hw = el.offsetWidth / 2;
+    const hh = el.offsetHeight / 2;
+    const face = {
+      left: box.left + box.width * 0.28,
+      right: box.left + box.width * 0.72,
+      top: box.top,
+      bottom: box.top + box.height * 0.46,
+    };
+
+    const preferred = SLOTS[slotIndex % SLOTS.length];
+    const angles = [preferred.deg, -36, -14, -56, 20, 40, 150, 170, -170];
+    const dists = [0.34, 0.28, 0.42, 0.22, 0.5];
+    let best = null;
+    let bestScore = Infinity;
+
+    for (const deg of angles) {
+      const rad = (deg * Math.PI) / 180;
+      for (const scale of dists) {
+        let x = head.x + Math.cos(rad) * box.width * scale;
+        let y = head.y + Math.sin(rad) * box.width * scale;
+        ({ x, y } = keepInLake(x, y, hw, hh, lake, head));
+        ({ x, y } = shoveOut(x, y, hw, hh, lake, header, head));
+        if (!legal(x, y, hw, hh, lake, face, header)) continue;
+        const score =
+          (deg - preferred.deg) ** 2 * 4 +
+          (x - head.x) ** 2 * 0.002 +
+          (y - head.y) ** 2 * 0.002;
+        if (score < bestScore) {
+          bestScore = score;
+          best = { x, y };
+        }
+      }
     }
-    x = clamp(x, 108, window.innerWidth - 108);
-    y = clamp(y, 78, window.innerHeight - 88);
+
+    let x;
+    let y;
+    if (best) {
+      ({ x, y } = best);
+    } else {
+      const left = Math.max(lake.left, header ? header.right : lake.left);
+      const top = Math.max(lake.top, header ? header.bottom : lake.top);
+      x = (left + lake.right) / 2;
+      y = (top + lake.bottom) / 2;
+      ({ x, y } = keepInLake(x, y, hw, hh, lake, { x, y }));
+    }
+
     const tail = (Math.atan2(head.y - y, head.x - x) * 180) / Math.PI;
     el.style.left = `${x}px`;
     el.style.top = `${y}px`;
     el.style.setProperty("--tail", `${tail}deg`);
-    const reach = el.offsetWidth / 2;
-    el.style.setProperty("--reach", `${reach}px`);
+    el.style.setProperty("--reach", `${hw}px`);
   }
 
   function spawn() {
@@ -111,7 +226,8 @@
     }
     sky.replaceChildren();
     sky.appendChild(el);
-    placeBubble(el);
+    placeBubble(el, slot);
+    slot += 1;
   }
 
   function showQuote() {
@@ -216,9 +332,17 @@
   }
 
   document.addEventListener("click", (event) => {
-    if (event.target.closest("a")) return;
+    if (event.target.closest("a, button, .folio")) return;
     showQuote();
   });
+
+  folio?.addEventListener(
+    "wheel",
+    (event) => {
+      event.preventDefault();
+    },
+    { passive: false },
+  );
 
   window.addEventListener("resize", () => {
     resizeWeather();

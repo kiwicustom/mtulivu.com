@@ -300,8 +300,7 @@ html[data-season="spring"] .cloud {
   }
 }
 
-.brand,
-.mail {
+.brand {
   position: fixed;
   left: 0;
   right: 0;
@@ -315,6 +314,7 @@ html[data-season="spring"] .cloud {
   left: 1.35rem;
   right: auto;
   text-align: left;
+  transition: opacity 0.45s ease;
 }
 
 .word {
@@ -393,46 +393,23 @@ html[data-season="spring"] .cloud {
   color: #fff4de;
 }
 
-.mail {
-  bottom: 1.05rem;
-  pointer-events: auto;
-}
-
-.mail a {
-  color: var(--cream);
-  text-decoration: none;
-  font-family: Syne, system-ui, sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  opacity: 0.9;
-  text-shadow: 0 1px 8px rgba(20, 12, 6, 0.7);
-}
-
-.mail a:hover {
-  color: var(--gold);
-  opacity: 1;
-}
-
 .install {
   position: fixed;
-  top: 1.15rem;
-  right: 1.2rem;
-  z-index: 6;
+  left: 1.35rem;
+  bottom: 1.15rem;
+  z-index: 9;
   appearance: none;
   border: 1px solid rgba(240, 193, 75, 0.85);
   background: rgba(20, 12, 6, 0.42);
   color: var(--gold);
-  font-family: Syne, system-ui, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 0.55rem 0.85rem;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.42rem 0.95rem;
   border-radius: 999px;
   cursor: pointer;
   backdrop-filter: blur(10px);
-  text-shadow: 0 1px 8px rgba(20, 12, 6, 0.7);
 }
 
 .install:hover {
@@ -443,13 +420,165 @@ html[data-season="spring"] .cloud {
   display: none;
 }
 
+.folio {
+  position: fixed;
+  z-index: 8;
+  top: 1.15rem;
+  right: 1.15rem;
+  bottom: auto;
+  max-height: calc(100vh - 2.3rem);
+  width: min(36rem, 44vw);
+  padding: clamp(1rem, 1.8vh, 1.4rem) 1.35rem 1.1rem;
+  overflow: hidden;
+  overscroll-behavior: none;
+  display: flex;
+  flex-direction: column;
+  color: #fff8ea;
+  font-family: Inter, system-ui, sans-serif;
+  background:
+    linear-gradient(180deg, rgba(255, 244, 222, 0.08), transparent 7rem),
+    rgba(16, 10, 5, 0.78);
+  border: 1px solid rgba(240, 193, 75, 0.38);
+  border-radius: 1.45rem;
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 244, 222, 0.16);
+  backdrop-filter: blur(22px) saturate(1.25);
+}
+
+.folio__kicker {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--gold);
+}
+
+.folio__title {
+  margin: 0.28rem 0 0;
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.16;
+}
+
+.folio__lead {
+  margin: 0.55rem 0 0;
+  font-size: clamp(0.8rem, 1.4vh, 0.9rem);
+  line-height: 1.4;
+  font-weight: 400;
+  color: rgba(255, 244, 222, 0.88);
+}
+
+.folio__links {
+  display: flex;
+  gap: 1.2rem;
+  margin: 0.7rem 0 0;
+  flex-shrink: 0;
+}
+
+.folio__links a,
+.folio-list a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.folio__links a:hover,
+.folio-list a:hover {
+  color: #fff8ea;
+}
+
+.folio__cols {
+  display: grid;
+  grid-template-columns: 1.12fr 0.88fr;
+  gap: 1.15rem;
+  margin-top: 0.35rem;
+  min-height: 0;
+}
+
+.folio h2 {
+  margin: 0.7rem 0 0;
+  padding-top: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-top: 1px solid rgba(240, 193, 75, 0.28);
+}
+
+.folio-list,
+.folio-path {
+  list-style: none;
+  margin: 0.45rem 0 0;
+  padding: 0;
+}
+
+.folio-list li,
+.folio-path li {
+  margin: 0;
+  padding: 0.32rem 0 0;
+}
+
+.folio-list li + li,
+.folio-path li + li {
+  border-top: 1px solid rgba(255, 244, 222, 0.08);
+  margin-top: 0.32rem;
+}
+
+.folio-list strong,
+.folio-list a {
+  display: block;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #fff8ea;
+}
+
+.folio-list span {
+  display: block;
+  margin-top: 0.08rem;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  font-weight: 400;
+  color: rgba(255, 244, 222, 0.68);
+}
+
+.folio-path li {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  font-weight: 400;
+  color: rgba(255, 244, 222, 0.88);
+}
+
+.folio-path b {
+  display: block;
+  min-width: 0;
+  margin-bottom: 0.08rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.folio__craft {
+  margin: 0.85rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  font-weight: 400;
+  color: rgba(255, 244, 222, 0.58);
+}
+
 .guru {
   position: fixed;
   inset: 0;
   z-index: 2;
   margin: 0;
   display: grid;
-  place-items: center;
+  place-items: center start;
+  padding-left: 2vw;
+  padding-right: min(38rem, 48vw);
   pointer-events: none;
 }
 
@@ -457,8 +586,8 @@ html[data-season="spring"] .cloud {
   display: block;
   width: auto;
   height: auto;
-  max-width: min(86vw, 920px);
-  max-height: 70vh;
+  max-width: min(54vw, 720px);
+  max-height: 78vh;
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
@@ -484,12 +613,13 @@ html[data-season="spring"] .cloud {
   inset: 0;
   z-index: 4;
   pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
 .bubble {
   position: absolute;
   z-index: 4;
-  max-width: min(18.5rem, 78vw);
+  max-width: min(18.5rem, 34vw);
   padding: 0.9rem 1.15rem 1rem;
   color: var(--ink);
   background: var(--cream);
@@ -614,10 +744,11 @@ html[data-season="spring"] .cloud {
     top: 0.7rem;
   }
   .install {
-    top: 0.7rem;
+    left: auto;
     right: 0.7rem;
-    letter-spacing: 0.12em;
-    padding: 0.48rem 0.7rem;
+    bottom: auto;
+    top: 0.7rem;
+    padding: 0.4rem 0.8rem;
   }
   .word {
     letter-spacing: 0.28em;
@@ -632,7 +763,37 @@ html[data-season="spring"] .cloud {
     letter-spacing: 0.02em;
   }
   .bubble {
-    max-width: min(15.5rem, 84vw);
+    max-width: min(16rem, calc(100vw - 1.4rem));
     padding: 0.7rem 0.9rem;
+  }
+  .guru {
+    place-items: start center;
+    padding: 4.2rem 0 0;
+  }
+  .guru img {
+    max-width: min(70vw, 420px);
+    max-height: 34vh;
+  }
+  .folio {
+    top: auto;
+    left: 0.7rem;
+    right: 0.7rem;
+    bottom: 0.7rem;
+    width: auto;
+    height: auto;
+    max-height: 48vh;
+    overflow: hidden;
+  }
+  .folio__cols {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+  .folio__lead,
+  .folio-list span {
+    display: none;
+  }
+  .folio h2 {
+    margin-top: 0.4rem;
+    padding-top: 0.35rem;
   }
 }
