@@ -1,8 +1,8 @@
-const CACHE = "mtulivu-v1";
+const CACHE = "mtulivu-v2";
 const PRECACHE = [
   "./",
   "./index.html",
-  "./styles.css?v=10",
+  "./styles.css?v=11",
   "./app.js?v=11",
   "./quotes.js",
   "./manifest.webmanifest",
