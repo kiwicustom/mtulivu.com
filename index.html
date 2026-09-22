@@ -25,7 +25,7 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=43" />
+    <link rel="stylesheet" href="styles.css?v=47" />
     <link rel="preload" as="image" href="gfx-guru-sam/season-summer.jpg" media="(min-width: 901px)" />
   </head>
   <body>
@@ -233,6 +233,7 @@
       build it<br />
       <em>together.</em>
       <a class="talk talk--solid" href="#contact" data-view="contact">Let’s talk <span aria-hidden="true">→</span></a>
+      <a class="book-hint" href="#contact" data-view="contact">Offer three times. I pick one.</a>
     </p>
 
     <aside class="quote">
@@ -353,20 +354,92 @@
       </ul>
     </aside>
 
-    <aside class="sheet" id="contact" hidden>
+    <aside class="sheet sheet--contact" id="contact" hidden>
       <button type="button" class="sheet__close" data-view="home" aria-label="Close">×</button>
-      <p class="sheet__kicker">Contact</p>
-      <h1>Let’s talk.</h1>
-      <p>
-        Write to
-        <a href="mailto:hello@mtulivu.com">hello@mtulivu.com</a>
-        or find me on
-        <a href="https://www.linkedin.com/in/smuli/" rel="me">LinkedIn</a>.
+      <p class="sheet__kicker">Let’s talk</p>
+      <h1>Three times.</h1>
+      <p class="book__lead">
+        I pick one. Private
+        <a href="https://meet.infra.kiwicustom.com/" rel="noopener">Lounge</a>.
       </p>
-      <a class="talk talk--solid" href="mailto:hello@mtulivu.com">hello@mtulivu.com <span aria-hidden="true">→</span></a>
+
+      <form class="book" id="book" novalidate>
+        <div class="book__who">
+          <label>
+            Name
+            <input name="name" type="text" autocomplete="name" required maxlength="80" />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" required maxlength="120" />
+          </label>
+        </div>
+        <label>
+          Why
+          <input name="why" type="text" required maxlength="160" placeholder="A product. The cloud." />
+        </label>
+        <div class="book__meta">
+          <p class="book__tz"><b id="book-tz">your timezone</b></p>
+          <div class="book__len" role="radiogroup" aria-label="Length">
+            <button type="button" data-len="15">15 min</button>
+            <button type="button" data-len="30" class="is-on">30 min</button>
+          </div>
+        </div>
+        <ol class="book__slots">
+          <li>
+            <button type="button" class="slot-pick" data-slot="1">
+              <span>1</span>
+              <b>Pick a time</b>
+            </button>
+            <input name="slot1" type="hidden" />
+          </li>
+          <li>
+            <button type="button" class="slot-pick" data-slot="2">
+              <span>2</span>
+              <b>Pick a time</b>
+            </button>
+            <input name="slot2" type="hidden" />
+          </li>
+          <li>
+            <button type="button" class="slot-pick" data-slot="3">
+              <span>3</span>
+              <b>Pick a time</b>
+            </button>
+            <input name="slot3" type="hidden" />
+          </li>
+        </ol>
+        <p class="book__err" id="book-err" hidden></p>
+        <button class="talk talk--solid" type="submit">Send the three <span aria-hidden="true">→</span></button>
+      </form>
+
+      <div class="book__done" id="book-done" hidden>
+        <p>The three are with me.</p>
+        <p class="sheet__kicker">You choose</p>
+        <ol class="book__choices" id="book-choices"></ol>
+        <p class="book__picked" id="book-picked" hidden></p>
+        <button type="button" class="talk talk--solid" id="book-again">Another three</button>
+      </div>
     </aside>
 
+    <div class="cal-scrim" id="cal-scrim" hidden></div>
+    <div class="cal" id="cal" hidden role="dialog" aria-modal="true" aria-labelledby="cal-title">
+      <header class="cal__head">
+        <button type="button" class="cal__nav" id="cal-prev" aria-label="Previous month">‹</button>
+        <p class="cal__title" id="cal-title">September</p>
+        <button type="button" class="cal__nav" id="cal-next" aria-label="Next month">›</button>
+      </header>
+      <p class="cal__which" id="cal-which">Time 1 of 3</p>
+      <div class="cal__dow" aria-hidden="true">
+        <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+      </div>
+      <div class="cal__grid" id="cal-grid"></div>
+      <p class="cal__kicker">Hour</p>
+      <div class="cal__hours" id="cal-hours"></div>
+      <p class="cal__kicker">Start</p>
+      <div class="cal__mins" id="cal-mins"></div>
+    </div>
+
     <script src="quotes.js"></script>
-    <script src="app.js?v=37"></script>
+    <script src="app.js?v=39"></script>
   </body>
 </html>

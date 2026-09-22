@@ -449,7 +449,9 @@ html[data-season="spring"] .bird {
 .kit,
 .social a,
 .install,
-.sheet {
+.sheet,
+.cal,
+.cal-scrim {
   pointer-events: auto;
 }
 
@@ -754,6 +756,27 @@ html[data-season="winter"] .planks__post::after {
 .together .talk--solid {
   margin: 0.95rem 0 0;
   font-style: normal;
+}
+
+.together .book-hint {
+  margin: 0.55rem 0 0;
+  max-width: 11.4rem;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  color: rgba(255, 248, 234, 0.82);
+  text-decoration: none;
+  text-shadow: 0 1px 10px rgba(20, 12, 6, 0.55);
+  border-bottom: 1px solid rgba(229, 107, 26, 0.55);
+  padding-bottom: 0.06rem;
+}
+
+.together .book-hint:hover {
+  color: #fff;
+  border-bottom-color: #e56b1a;
 }
 
 .guru {
@@ -1134,6 +1157,427 @@ html[data-season="winter"] .planks__post::after {
   color: #fff8ea !important;
 }
 
+.sheet--contact {
+  top: 17.4rem;
+  right: 6.2rem;
+  width: min(22.4rem, 32vw);
+  max-height: calc(100vh - 18.8rem);
+  padding: 0.85rem 0.95rem 0.95rem;
+}
+
+.sheet--contact h1 {
+  font-size: 1.35rem;
+}
+
+.sheet--contact p {
+  margin-top: 0.38rem;
+  font-size: 0.82rem;
+}
+
+.book,
+.book__done {
+  margin-top: 0.65rem;
+}
+
+.book__who {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+}
+
+.book label {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.book__who label {
+  margin-top: 0;
+}
+
+.book input {
+  display: block;
+  width: 100%;
+  margin-top: 0.22rem;
+  padding: 0.42rem 0.58rem;
+  border: 1px solid rgba(255, 244, 222, 0.18);
+  border-radius: 0.55rem;
+  background: rgba(8, 4, 0, 0.38);
+  color: #fff8ea;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.book input::placeholder {
+  color: rgba(255, 244, 222, 0.38);
+}
+
+.book input:focus {
+  outline: 1px solid rgba(240, 193, 75, 0.55);
+}
+
+.book__lead {
+  margin-top: 0.32rem !important;
+}
+
+.book__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  margin-top: 0.55rem;
+}
+
+.book__tz,
+.book__note,
+.book__err {
+  margin: 0;
+  font-size: 0.68rem;
+  line-height: 1.3;
+  color: rgba(255, 244, 222, 0.72);
+  text-shadow: none;
+}
+
+.book__tz b {
+  color: #fff8ea;
+  font-weight: 600;
+}
+
+.book__len {
+  display: flex;
+  gap: 0.28rem;
+  flex-shrink: 0;
+}
+
+.book__len button {
+  appearance: none;
+  margin: 0;
+  padding: 0.28rem 0.55rem;
+  border: 1px solid rgba(255, 244, 222, 0.18);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 248, 234, 0.78);
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.book__len button.is-on {
+  border-color: transparent;
+  background: #e56b1a;
+  color: #fff8ea;
+}
+
+.book__slots {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.book__slots li {
+  margin: 0;
+}
+
+.slot-pick {
+  appearance: none;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.35rem 1fr;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.42rem 0.6rem;
+  border: 1px solid rgba(255, 244, 222, 0.16);
+  border-radius: 0.65rem;
+  background: rgba(8, 4, 0, 0.32);
+  color: #fff8ea;
+  font-family: Inter, system-ui, sans-serif;
+  text-align: left;
+  cursor: pointer;
+}
+
+.slot-pick:hover,
+.slot-pick.is-on {
+  border-color: rgba(240, 193, 75, 0.5);
+  background: rgba(240, 193, 75, 0.1);
+}
+
+.slot-pick span {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+
+.slot-pick b {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255, 248, 234, 0.92);
+}
+
+.slot-pick:not(.is-set) b {
+  color: rgba(255, 248, 234, 0.48);
+  font-weight: 400;
+}
+
+.book__err {
+  margin-top: 0.45rem;
+  color: #ffb4a2;
+}
+
+.book__err[hidden],
+.book__done[hidden],
+.book[hidden],
+.book__picked[hidden] {
+  display: none;
+}
+
+.book .talk--solid {
+  margin-top: 0.7rem;
+  width: 100%;
+}
+
+.book__choices {
+  list-style: none;
+  margin: 0.55rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.book__choices button {
+  appearance: none;
+  width: 100%;
+  text-align: left;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid rgba(255, 244, 222, 0.16);
+  border-radius: 0.8rem;
+  background: rgba(255, 244, 222, 0.06);
+  color: #fff8ea;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.book__choices button:hover,
+.book__choices button.is-on {
+  border-color: rgba(240, 193, 75, 0.55);
+  background: rgba(240, 193, 75, 0.12);
+}
+
+.book__choices b {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: var(--gold);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sheet--contact .book__done h2 {
+  margin: 0.2rem 0 0;
+  padding: 0;
+  border: 0;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  font-size: 1.05rem;
+  color: #fff8ea;
+}
+
+.book__done .sheet__kicker {
+  margin-top: 1rem;
+}
+
+.book__picked {
+  margin-top: 0.75rem;
+}
+
+.book__picked a {
+  color: var(--gold);
+}
+
+#book-again {
+  margin-top: 0.9rem;
+}
+
+.cal-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: rgba(8, 4, 0, 0.42);
+  backdrop-filter: blur(3px);
+}
+
+.cal {
+  position: fixed;
+  z-index: 21;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(22.2rem, calc(100vw - 1.5rem));
+  padding: 0.85rem 0.9rem 0.95rem;
+  color: #fff8ea;
+  font-family: Inter, system-ui, sans-serif;
+  background: rgba(18, 11, 6, 0.96);
+  border: 1px solid rgba(240, 193, 75, 0.32);
+  border-radius: 1.1rem;
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.5);
+}
+
+.cal-scrim[hidden],
+.cal[hidden] {
+  display: none;
+}
+
+.cal__head {
+  display: grid;
+  grid-template-columns: 2rem 1fr 2rem;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.cal__title {
+  margin: 0;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cal__nav {
+  appearance: none;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(255, 244, 222, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 244, 222, 0.06);
+  color: #fff8ea;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cal__nav:hover {
+  border-color: rgba(240, 193, 75, 0.55);
+  background: rgba(240, 193, 75, 0.12);
+}
+
+.cal__which {
+  margin: 0.35rem 0 0;
+  text-align: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.cal__dow,
+.cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.18rem;
+}
+
+.cal__dow {
+  margin-top: 0.7rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 244, 222, 0.48);
+  text-align: center;
+}
+
+.cal__grid {
+  margin-top: 0.28rem;
+}
+
+.cal__day {
+  appearance: none;
+  height: 2rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #fff8ea;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.cal__day:hover:not(:disabled) {
+  background: rgba(255, 244, 222, 0.1);
+}
+
+.cal__day.is-today {
+  box-shadow: inset 0 0 0 1px rgba(240, 193, 75, 0.45);
+}
+
+.cal__day.is-on {
+  background: #e56b1a;
+  color: #fff8ea;
+  font-weight: 700;
+}
+
+.cal__day:disabled {
+  color: rgba(255, 244, 222, 0.28);
+  cursor: default;
+}
+
+.cal__kicker {
+  margin: 0.7rem 0 0.32rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.cal__hours,
+.cal__mins {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.28rem;
+}
+
+.cal__mins {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.cal__chip {
+  appearance: none;
+  min-width: 0;
+  padding: 0.32rem 0.2rem;
+  border: 1px solid rgba(255, 244, 222, 0.14);
+  border-radius: 0.45rem;
+  background: rgba(255, 244, 222, 0.05);
+  color: #fff8ea;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cal__chip:hover:not(:disabled) {
+  border-color: rgba(240, 193, 75, 0.5);
+}
+
+.cal__chip.is-on {
+  border-color: transparent;
+  background: #e56b1a;
+}
+
+.cal__chip:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
 .folio__cols {
   display: grid;
   grid-template-columns: 1.12fr 0.88fr;
@@ -1389,6 +1833,22 @@ html[data-view="values"] .kit {
     font-size: 0.78rem;
     line-height: 1.15;
     padding: 0.4rem 0.78rem;
+  }
+  .together .book-hint {
+    margin-top: 0.38rem;
+    max-width: 8.8rem;
+    font-size: 0.62rem;
+    color: rgba(255, 248, 234, 0.88);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+  }
+  .sheet--contact {
+    right: 0;
+    width: auto;
+    top: auto;
+    padding: 0.9rem 1rem 1.2rem;
+  }
+  .book__who {
+    grid-template-columns: 1fr;
   }
   .guru {
     padding: 5.2rem 0 22vh;
